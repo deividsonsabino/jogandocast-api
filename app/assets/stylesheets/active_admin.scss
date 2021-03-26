@@ -8,8 +8,14 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
+
+$skinMainFirstColor: #000000!default;
+$skinMainSecondColor: #ff0000!default;
+$skinBorderWindowColor: #000000!default;
+
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "wigu/active_admin_theme";
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:

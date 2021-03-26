@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Active Admin
 gem 'activeadmin'
+gem 'active_admin_theme'
 
 # Auth
 gem 'devise'
