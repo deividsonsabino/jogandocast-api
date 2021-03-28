@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Active Admin
 gem 'activeadmin'
 gem 'active_admin_theme'
+gem 'activeadmin_quill_editor'
 
 # Auth
 gem 'devise'
