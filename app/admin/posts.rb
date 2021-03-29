@@ -17,6 +17,8 @@ ActiveAdmin.register Post do
   filter :content
 
   form do |f|
+    f.semantic_errors
+
     f.inputs do
       f.input :title
       f.input :author
