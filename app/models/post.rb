@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   end
 
   belongs_to :author, class_name: "AdminUser", foreign_key: "admin_user_id"
+
+  validates :title, :image, :content, presence: true
 end
