@@ -1,7 +1,7 @@
 ActiveAdmin.register Post do
   includes :author
 
-  permit_params :title, :admin_user_id, :image, :content
+  permit_params :title, :admin_user_id, :image, :content, :description
 
   index do
     selectable_column
@@ -20,6 +20,7 @@ ActiveAdmin.register Post do
   end
 
   filter :title
+  filter :description
   filter :author
   filter :content
 
@@ -28,6 +29,7 @@ ActiveAdmin.register Post do
 
     f.inputs do
       f.input :title
+      f.input :description
       f.input :author
       f.input :image, as: :file, hint: f.object.try(:image).present? ? image_tag(url_for(f.object.image)) : content_tag(:span, 'no image yet')
       f.input :content, as: :quill_editor
@@ -38,6 +40,7 @@ ActiveAdmin.register Post do
   show do
     attributes_table do
       row :title
+      row :description
       row :author
       row :content do |c|
         c.content.html_safe
