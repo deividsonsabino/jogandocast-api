@@ -10,9 +10,7 @@ ActiveAdmin.register Post do
       image_tag(url_for(post.image), size: "150x100")
     end
     column :title
-    column :content do |post|
-      post.content.html_safe
-    end
+    column :description
     column :author
     column :created_at
     column :update_at
