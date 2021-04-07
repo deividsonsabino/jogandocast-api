@@ -1,5 +1,5 @@
 class Api::V1::PostsController < Api::V1::ApiController
-  before_action :set_post
+  before_action :set_post, only: [:show]
 
   def index
     @posts = Post.all
