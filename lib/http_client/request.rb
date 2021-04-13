@@ -2,7 +2,7 @@ module HttpClient
   class Request
     class << self
       def post(url, body: nil, headers: nil)
-        response = HTTParty.post(url, body: body, headers: nil)
+        response = HTTParty.post(url, body: body, headers: headers)
         handle_response(response)
       end
 
