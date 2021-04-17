@@ -6,6 +6,11 @@ module HttpClient
         handle_response(response)
       end
 
+      def get(url, query: nil, headers: nil)
+        response = HTTParty.get(url, query: query, headers: headers)
+        handle_response(response)
+      end
+
       private
 
       def handle_response(response)

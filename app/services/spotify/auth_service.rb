@@ -1,6 +1,6 @@
 module Spotify
   class AuthService
-    AUTH_ENDPOINT = ENV['SPOTIFY_API_BASE_URL'] + '/token'.freeze
+    AUTH_ENDPOINT = ENV['SPOTIFY_AUTH_BASE_URL'] + '/token'.freeze
     SPOTIFY_CLIENT_ID = ENV['SPOTIFY_CLIENT_ID'].freeze
     SPOTIFY_CLIENT_SECRET = ENV['SPOTIFY_CLIENT_SECRET'.freeze]
 
