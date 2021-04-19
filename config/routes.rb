@@ -10,4 +10,8 @@ Rails.application.routes.draw do
       resources :posts, only: [:index, :show]
     end
   end
+
+  namespace :admin do
+    get '/episodes/sync', to: 'episodes#sync'
+  end
 end

@@ -1,6 +1,13 @@
 ActiveAdmin.register Episode do
+  actions :index
+
   config.sort_order = "release_date_desc"
   config.per_page = 10
+
+  collection_action :import_csv, method: :post do
+    # Do some CSV importing work here...
+    redirect_to collection_path, notice: "CSV imported successfully!"
+  end
 
   index do
     column :image do |episode|
@@ -21,4 +28,21 @@ ActiveAdmin.register Episode do
 
   filter :name
   filter :description
+
+  action_item :sync do
+    link_to 'Sync Spotify', admin_episodes_sync_path
+  end
+
+
+  controller do
+    def sync
+      begin
+        Spotify::SyncService.call
+
+        redirect_to admin_episodes_path, notice: "Episodes synced with success!"
+      rescue
+        redirect_to admin_episodes_path, flash: { error: "Error when syncing" }
+      end
+    end
+  end
 end
