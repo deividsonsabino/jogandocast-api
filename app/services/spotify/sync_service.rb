@@ -33,9 +33,10 @@ module Spotify
             name: episode[:name],
             description: episode[:description],
             duration: episode[:duration_ms],
-            link: episode[:href],
+            link: episode[:external_urls][:spotify],
             preview_url: episode[:audio_preview_url],
-            image_url: episode[:images].first
+            image_url: episode[:images].first[:url],
+            release_date: episode[:release_date]
           )
         end
       end
