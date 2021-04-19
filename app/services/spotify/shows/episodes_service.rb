@@ -1,35 +1,40 @@
 module Spotify
   module Shows
     class EpisodesService
-      ESPISODES_ENDPOINT = ENV['SPOTIFY_API_BASE_URL'] + '/v1/shows/6rV1d1mPXEIaPD3S9mkZk5'.freeze
+      ESPISODES_ENDPOINT = ENV['SPOTIFY_API_BASE_URL'] + '/v1/shows/6rV1d1mPXEIaPD3S9mkZk5/episodes'.freeze
 
-      class << self
-        def call
-          token = Spotify::AuthService.new.call
+      attr_reader :limit, :offset
 
-          get_episodes(token)
-        rescue StandardError => e
-          puts e.message
-          puts e.backtrace
+      def initialize(limit: nil, offset: nil)
+        @limit = limit
+        @offset = offset
+      end
 
-          raise e
-        end
+      def call
+        token = Spotify::AuthService.new.call
 
-        private
+        get_episodes(token)
+      rescue StandardError => e
+        puts e.message
+        puts e.backtrace
 
-        def get_episodes(token)
-          query = { market: 'BR' }
+        raise e
+      end
 
-          HttpClient::Request.get(ESPISODES_ENDPOINT, query: query, headers: headers(token))
-        end
+      private
 
-        def headers(token)
-          {
-            'Authorization': "Bearer #{token}",
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        end
+      def get_episodes(token)
+        query = { market: 'BR', limit: limit, offset: offset }.compact
+
+        HttpClient::Request.get(ESPISODES_ENDPOINT, query: query, headers: headers(token))
+      end
+
+      def headers(token)
+        {
+          'Authorization': "Bearer #{token}",
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       end
     end
   end

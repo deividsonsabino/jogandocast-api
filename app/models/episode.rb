@@ -1,3 +1,5 @@
 class Episode < ApplicationRecord
-  validates :name, :description, :duration, :link, :preview_url, :image_rl, presence: true
+  self.primary_key = :id
+  
+  validates :name, :description, :duration, :link, :preview_url, :image_url, presence: true
 end
