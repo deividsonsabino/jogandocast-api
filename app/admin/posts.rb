@@ -1,13 +1,13 @@
 ActiveAdmin.register Post do
   includes :author
 
-  permit_params :title, :admin_user_id, :image, :content, :description
+  permit_params :title, :admin_user_id, :photo, :content, :description
 
   index do
     selectable_column
     id_column
     column :image do |post|
-      image_tag(url_for(post.image), size: "150x100")
+      image_tag("data:image/jpeg;base64,#{post.image.try(:content)}", size: "150x100")
     end
     column :title
     column :description
@@ -29,7 +29,7 @@ ActiveAdmin.register Post do
       f.input :title
       f.input :description
       f.input :author
-      f.input :image, as: :file, hint: f.object.try(:image).present? ? image_tag(url_for(f.object.image)) : content_tag(:span, 'no image yet')
+      f.input :photo, as: :file, hint: f.object.try(:image).present? ? image_tag(url_for(f.object.image)) : content_tag(:span, 'no image yet')
       f.input :content, as: :quill_editor
     end
     f.actions
