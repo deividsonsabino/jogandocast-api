@@ -1,1 +1,1 @@
-json.episodes @episodes, :id, :name, :description, :release_date, :preview_url, :image_url
+json.episodes @episodes, :id, :name, :description, :release_date, :preview_url, :image_url, :link

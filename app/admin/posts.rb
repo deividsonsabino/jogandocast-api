@@ -29,7 +29,7 @@ ActiveAdmin.register Post do
       f.input :title
       f.input :description
       f.input :author
-      f.input :file, as: :file, hint: f.object.try(:image).present? ? image_tag(url_for(f.object.image)) : content_tag(:span, 'no image yet')
+      f.input :file, as: :file, hint: f.object.try(:image).present? ? image_tag(f.object.image_base64) : content_tag(:span, 'no image yet')
       f.input :content, as: :quill_editor
     end
     f.actions
